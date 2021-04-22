@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+<style>
+    path{
+        fill: #fff;
+    }
+</style>
+<title>icon-zoom</title><g id="레이어_2" data-name="레이어 2">
+<g id="레이어_1-2" data-name="레이어 1">
+<path d="M8,0H2A2,2,0,0,0,0,2H0V8H2V2H8Z"/><path d="M28,0h6a2,2,0,0,1,2,2h0V8H34V2H28Z"/><path d="M8,36H2a2,2,0,0,1-2-2H0V28H2v6H8Z"/><path d="M28,36h6a2,2,0,0,0,2-2h0V28H34v6H28Z"/></g></g></svg>

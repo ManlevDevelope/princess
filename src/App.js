@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router';
+import React, { useEffect } from 'react';
+import { Redirect, Router, Switch } from 'react-router';
+import RouteWithLayout from './components/RouteWithLayout';
 import Recognition from './Recognition';
+import Home from './routes';
+import AppLayout from './layouts';
 
 function App() {
   useEffect(() => {}, []);
 
   return (
     <>
-      <div>헤더</div>
       <Switch>
-        <Route exact path='/' />
-        <Route exact path='/recognition' component={Recognition} />
+        <Redirect from='/' to='/Home' />
+        <RouteWithLayout path='/Home' component={Home} layout={AppLayout} />
+
+        <RouteWithLayout
+          path='/recognition'
+          component={Recognition}
+          layout={AppLayout}
+        />
+
+        <Redirect to='/not-found' />
       </Switch>
     </>
   );
