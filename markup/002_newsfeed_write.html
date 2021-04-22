@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="sub-nav-title">
+            <div class="container">
+                <nav>
+                    <a href="002_newsfeed.html" class="btn-back">
+                        <img src="img/btn-back.svg" alt="">
+                    </a>
+                    <div class="title">
+                        <h1>게시글 쓰기</h1>
+                    </div>
+                    <button class="complete">
+                        완료
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <section>
+            <div class="container">
+                <div class="review-write">
+                   <div class="camera-btn">
+                       <h1>사진 올리기</h1>
+                        <div class="swiper-container slide-menu">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="picture-btn">
+                                        <button>
+                                            <img src="img/icon-camera.svg" alt="">
+                                            <span>(0/10)</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   <div class="review-title">
+                       <input type="text" placeholder="제목을 써주세요">
+                   </div>
+                   <div class="review-text">
+                       <textarea name="" id="" cols="30" rows="10" placeholder="여기에 내용을 써주세요"></textarea>
+                   </div>
+                </div>
+            </div>
+        </section>
+       
+    </main>
+
+    
+</body>
+<script>
+      var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3.5,
+        spaceBetween: 18,
+        freeMode: true,
+    });
+
+</script>
+</html>
