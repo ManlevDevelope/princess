@@ -49,7 +49,6 @@ function App() {
 
   return (
     <div className='container'>
-      test
       <Loader
         type='Watch'
         color='#00BFFF'
