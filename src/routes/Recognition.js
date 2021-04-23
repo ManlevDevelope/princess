@@ -108,10 +108,7 @@ function Recognition() {
           )} */}
 
           {loaded && (
-            <StartButton
-              style={{ position: 'relative' }}
-              onClick={() => toggle()}
-            >
+            <StartButton onClick={() => toggle()}>
               {start ? 'Stop' : <img src='img/icon-scan-white.svg' alt='' />}
             </StartButton>
           )}

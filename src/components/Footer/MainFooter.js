@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const MainFooter = () => {
   return (
     <div className='nav-menu'>
       <div className='container'>
@@ -70,4 +70,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default MainFooter;

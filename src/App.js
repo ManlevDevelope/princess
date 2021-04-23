@@ -6,6 +6,7 @@ import RouteWithLayout from './components/RouteWithLayout';
 import Recognition from './routes/Recognition';
 import Home from './routes';
 import AppLayout from './layouts';
+import ShopDetail from './routes/ShopDetail';
 
 function App() {
   return (
@@ -16,6 +17,11 @@ function App() {
           path='/recognition'
           component={Recognition}
           layout={null}
+        />
+        <RouteWithLayout
+          path='/shop-details'
+          component={ShopDetail}
+          layout={AppLayout}
         />
         <Redirect from='/' to='/Home' />
 

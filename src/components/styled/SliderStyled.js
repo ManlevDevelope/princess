@@ -29,13 +29,14 @@ export const SlickImageContainer = styled.div`
     margin-left: 16px;
     li {
       margin: 0 4px;
+      a {
+        margin-bottom: -10px;
+      }
     }
   }
 `;
 
 export const SlickTextContainer = styled.div`
-
-
   margin-top: 1px;
   background: white;
   overflow: hidden;

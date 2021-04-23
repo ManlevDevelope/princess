@@ -3,7 +3,7 @@ import Slick from 'react-slick';
 import { Container } from '../styled';
 
 const ImageSlider = () => (
-  <Container>
+  <Container style={{ color: 'white' }}>
     <SlickImageContainer>
       <Global />
       <Slick
