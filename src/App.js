@@ -1,28 +1,27 @@
-import React, { useEffect } from 'react';
-import { Redirect, Router, Switch } from 'react-router';
+import React from 'react';
+import { Redirect, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/configureStore';
 import RouteWithLayout from './components/RouteWithLayout';
-import Recognition from './Recognition';
+import Recognition from './routes/Recognition';
 import Home from './routes';
 import AppLayout from './layouts';
 
 function App() {
-  useEffect(() => {}, []);
-
   return (
-    <>
+    <Provider store={store}>
       <Switch>
-        <Redirect from='/' to='/Home' />
         <RouteWithLayout path='/Home' component={Home} layout={AppLayout} />
-
         <RouteWithLayout
           path='/recognition'
           component={Recognition}
-          layout={AppLayout}
+          layout={null}
         />
+        <Redirect from='/' to='/Home' />
 
         <Redirect to='/not-found' />
       </Switch>
-    </>
+    </Provider>
   );
 }
 

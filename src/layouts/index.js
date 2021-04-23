@@ -1,11 +1,10 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-const AppLayout = ({ childComponent }) => {
-  console.log(childComponent);
+const AppLayout = ({ childComponent: Component }) => {
   return (
     <>
       <Header />
-      {childComponent}
+      <Component />
       <Footer />
     </>
   );

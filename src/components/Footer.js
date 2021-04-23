@@ -38,7 +38,7 @@ const Footer = () => {
               ></object>
               <span>스캔</span>
             </div>
-            <Link href='/recognition'>스캔</Link>
+            <Link to='/recognition'>스캔</Link>
           </div>
           <div className='menu-btn'>
             <div className='bottom-icon'>
