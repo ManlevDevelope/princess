@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams, useRouteMatch, withRouter } from 'react-router-dom';
 import ImageSlider from '../components/Slider/ImageSlider';
 import Layout from '../layouts';
-
+// 헤로쿠 고
 const ShopDetail = () => {
   const { id } = useParams();
   console.log(id);
