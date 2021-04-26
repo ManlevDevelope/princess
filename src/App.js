@@ -1,20 +1,15 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import RouteWithLayout from './components/RouteWithLayout';
 import Recognition from './routes/Recognition';
 import Home from './routes';
 import ShopDetail from './routes/ShopDetail';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import ShopPage from './routes/ShopPage';
 
 function App() {
   return (
     <>
-      <Header />
       <Switch>
         <Route exact path='/' render={(props) => <Home {...props} />} />
-
         <Route
           exact
           path='/recognition'
@@ -28,7 +23,6 @@ function App() {
         />
         <Redirect to='/not-found' />
       </Switch>
-      <Footer />
     </>
   );
 }

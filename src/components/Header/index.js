@@ -1,11 +1,11 @@
-import { useRouteMatch } from 'react-router';
+import {  useRouteMatch } from 'react-router';
 import MainHeader from './MainHeader';
 import ShopDetailHeader from './ShopDetailHeader';
 
 const Header = () => {
-  const match = useRouteMatch();
-  switch (match.path) {
-    case '/shop':
+  const { path } = useRouteMatch();
+  switch (path) {
+    case '/shop/:id':
       return <ShopDetailHeader />;
     default:
       return <MainHeader />;

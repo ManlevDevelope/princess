@@ -3,10 +3,11 @@ import MainFooter from './MainFooter';
 import ShopDetailFooter from './ShopDetailFooter';
 
 const Footer = () => {
-  const match = useRouteMatch();
-  switch (match.path) {
-    case '/shop':
+  const { path } = useRouteMatch();
+  switch (path) {
+    case '/shop/:id':
       return <ShopDetailFooter />;
+    case '/shop':
     default:
       return <MainFooter />;
   }

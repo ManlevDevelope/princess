@@ -15,19 +15,18 @@ import styled from 'styled-components';
 const StartButton = styled.button`
   z-index=100;
 `;
-
+let classifier;
+let stream;
 function Recognition() {
   const videoRef = useRef();
-  const [classifier, setClassifier] = useState();
-  const [stream, setStream] = useState();
   const [start, setStart] = useState(false);
   const [result, setResult] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const window = useWindowSize();
 
   useEffect(() => {
-    const m = ml5.imageClassifier('./model/model.json', async () => {
-      await navigator.mediaDevices
+    classifier = ml5.imageClassifier('./model/model.json', async () => {
+      stream = await navigator.mediaDevices
         .getUserMedia({
           video: true,
           audio: false,
@@ -36,15 +35,13 @@ function Recognition() {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
           setLoaded(true);
-          setStream(stream);
           return stream;
         });
     });
-    setClassifier(m);
     return () => {
       stream.getVideoTracks()[0].stop();
     };
-  }, [videoRef, stream]);
+  }, [videoRef]);
 
   useInterval(() => {
     if (classifier && start) {
@@ -76,7 +73,7 @@ function Recognition() {
       <div className='scan-bg'>
         <div className='scan-header'>
           <Link className='btn-back' to='/'>
-            <img src='img/btn-back-white.svg' alt='' />
+            <img src='/img/btn-back-white.svg' alt='' />
           </Link>
           <div className='title'>
             <h1>스캔하기</h1>
@@ -105,15 +102,9 @@ function Recognition() {
         <div className='camera-bg'>
           {result.length > 0 && <Chart data={result[0]} />}
 
-          {/* {result.length > 0 && (
-            <div className='results'>
-              <Princess data={result} />
-            </div>
-          )} */}
-
           {loaded && (
             <StartButton onClick={() => toggle()}>
-              {start ? 'Stop' : <img src='img/icon-scan-white.svg' alt='' />}
+              {start ? 'Stop' : <img src='/img/icon-scan-white.svg' alt='' />}
             </StartButton>
           )}
         </div>

@@ -4,8 +4,7 @@ import { Container } from '../styled';
 import { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const ImageSlider = () => {
-  const [cs, setCs] = useState([1, 2, 3]);
+const ImageSlider = ({ items,dots }) => {
   return (
     <Container style={{ color: 'white' }}>
       <SlickImageContainer>
@@ -16,19 +15,13 @@ const ImageSlider = () => {
           arrows={false}
           slidesToShow={1}
           slidesToScroll={1}
-          dots={true}
+          dots={dots}
           autoplay={true}
           autoplaySpeed={4000}
           cssEase={'linear'}
           pauseOnDotsHover={true}
         >
-          {cs.map((v, i) => (
-            <div key={i} className='slide-item'>
-              <Link to='/'>
-                <img src='img/banner-1.png' alt='' />
-              </Link>
-            </div>
-          ))}
+          {items.map((Content, i) => Content)}
         </Slick>
       </SlickImageContainer>
     </Container>

@@ -6,7 +6,7 @@ const ShopDetailFooter = () => {
       </div>
       <div className='btn-bascket'>
         <button>
-          <img src='img/icon-bascket-white.svg' alt='' />
+          <img src='/img/icon-bascket-white.svg' alt='' />
         </button>
       </div>
     </div>

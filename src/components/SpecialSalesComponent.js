@@ -19,7 +19,7 @@ const SpecialSalesComponent = () => {
             <div className='item-header'>
               <Link to={`/shop/${itemNumber[i]}`}>벅스봇 1</Link>
               <button className='heart'>
-                <img src='img/icon-heart.svg' alt='' />
+                <img src='/img/icon-heart.svg' alt='' />
               </button>
             </div>
             <div className='item-body'>
