@@ -20,7 +20,6 @@ const Home = () => {
         <div className='shop-item-wrap'>
           <SpecialSaleContainer />
           <SeenSaleContainer />
-
           <div className='shop-item-grp'>
             <div className='title'>
               <h1>전체 상품 보기</h1>

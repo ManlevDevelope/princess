@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useParams, withRouter } from 'react-router-dom';
 import ImageSlider from '../components/Slider/ImageSlider';
 
 const ShopDetail = () => {
+  const { id } = useParams();
+  console.log(id);
+  useEffect(() => {}, []);
   return (
     <>
-
-
       <main>
         <section id='ad-banner'>
           <ImageSlider />
@@ -487,4 +489,4 @@ const ShopDetail = () => {
   );
 };
 
-export default ShopDetail;
+export default withRouter(ShopDetail);

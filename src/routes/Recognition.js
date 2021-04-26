@@ -10,22 +10,24 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-let classifier;
-let stream;
+// let classifier;
+// let stream;
 const StartButton = styled.button`
   z-index=100;
 `;
 
 function Recognition() {
   const videoRef = useRef();
+  const [classifier, setClassifier] = useState();
+  const [stream, setStream] = useState();
   const [start, setStart] = useState(false);
   const [result, setResult] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const window = useWindowSize();
 
   useEffect(() => {
-    classifier = ml5.imageClassifier('./model/model.json', async () => {
-      stream = await navigator.mediaDevices
+    const m = ml5.imageClassifier('./model/model.json', async () => {
+      await navigator.mediaDevices
         .getUserMedia({
           video: true,
           audio: false,
@@ -34,13 +36,15 @@ function Recognition() {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
           setLoaded(true);
+          setStream(stream);
           return stream;
         });
     });
+    setClassifier(m);
     return () => {
       stream.getVideoTracks()[0].stop();
     };
-  }, [videoRef]);
+  }, [videoRef, stream]);
 
   useInterval(() => {
     if (classifier && start) {

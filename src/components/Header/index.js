@@ -5,7 +5,7 @@ import ShopDetailHeader from './ShopDetailHeader';
 const Header = () => {
   const match = useRouteMatch();
   switch (match.path) {
-    case '/shop-details':
+    case '/shop':
       return <ShopDetailHeader />;
     default:
       return <MainHeader />;

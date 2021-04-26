@@ -5,7 +5,7 @@ import ShopDetailFooter from './ShopDetailFooter';
 const Footer = () => {
   const match = useRouteMatch();
   switch (match.path) {
-    case '/shop-details':
+    case '/shop':
       return <ShopDetailFooter />;
     default:
       return <MainFooter />;
