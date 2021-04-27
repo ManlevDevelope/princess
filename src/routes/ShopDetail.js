@@ -6,7 +6,6 @@ import Layout from '../layouts';
 const ShopDetail = () => {
   const { id } = useParams();
   console.log(id);
-  useEffect(() => {}, []);
   return (
     <Layout>
       <section id='ad-banner'>

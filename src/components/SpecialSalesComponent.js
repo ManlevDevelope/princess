@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SpecialSalesComponent = () => {
@@ -6,12 +6,13 @@ const SpecialSalesComponent = () => {
   const [item, setItem] = useState();
   const [content, setContent] = useState();
   const [itemNumber, setItemNumber] = useState([1, 2, 3]);
+
   return (
     <div className='vertical-item-grp'>
       {cs.map((v, i) => (
         <div key={i} className='vertical-item'>
           <div className='thumb'>
-            <Link to='/shop'>
+            <Link to={`/shop/${itemNumber[i]}`}>
               <img src={`img/shop-item-${v}.png`} alt='' />
             </Link>
           </div>

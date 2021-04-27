@@ -21,7 +21,7 @@ const MainFooter = () => {
               />
               <span>게시글</span>
             </div>
-            <Link to='/'>뉴스피드</Link>
+            <Link to='/newsfeed'>뉴스피드</Link>
           </div>
           <div className='menu-btn'>
             <div className='bottom-icon'>

@@ -41,7 +41,7 @@ const Home = () => {
         <div className='shop-item-wrap'>
           <SpecialSaleContainer />
           <SeenSaleContainer />
-          <ShopPage />
+          <ShopPage whole={true} />
         </div>
       </Container>
     </Layout>
