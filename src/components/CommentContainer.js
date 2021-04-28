@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import CommentComponent from './CommentComponent';
+
+// 코멘트 컴포넌트
 
 const CommentContainer = () => {
   return (

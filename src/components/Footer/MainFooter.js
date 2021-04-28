@@ -43,7 +43,7 @@ const MainFooter = () => {
               <img alt='icon-my' className='icon' src='/img/icon-my.svg' />
               <span>내 정보</span>
             </div>
-            <Link to='/'>프로필</Link>
+            <Link to='/info'>프로필</Link>
           </div>
         </nav>
       </div>

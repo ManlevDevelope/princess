@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
+// 코멘트 컴포넌트
 
 const CommentComponent = () => {
   return (

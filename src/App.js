@@ -7,7 +7,8 @@ import ShopPage from './routes/ShopPage';
 import Layout from './layouts';
 import Newsfeed from './routes/Newsfeed';
 import NewsfeedDetail from './routes/NewsfeedDetail';
-import Mycard from './components/Mycard';
+import Mycard from './routes/Mycard';
+import UserInfo from './routes/UserInfo';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           path='/card-newsfeed'
           render={(props) => <Newsfeed {...props} />}
         />
+        <Route exact path='/info' render={(props) => <UserInfo {...props} />} />
         <Redirect to='/not-found' />
       </Switch>
     </>

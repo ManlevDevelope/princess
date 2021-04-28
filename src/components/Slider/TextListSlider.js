@@ -25,6 +25,7 @@ const TextListSlider = ({ list = [] }) => {
         >
           {list.map((value, i) => (
             <div
+              key={i}
               onClick={onClickMenu(i)}
               className={`slide-item ${choice === i ? 'active' : ''}`}
             >

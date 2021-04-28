@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import ImageSlider from './Slider/ImageSlider';
 
+// 연관상품 컴포넌트
+
 const SeenSaleComponent = () => {
   return (
     <>

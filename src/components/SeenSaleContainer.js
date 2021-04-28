@@ -1,5 +1,7 @@
 import SeenSaleComponent from './SeenSaleComponent';
 
+// 연관상품 컨테이너
+
 const SeenSaleContainer = () => {
   return (
     <div className='shop-item-grp'>

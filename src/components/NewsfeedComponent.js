@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+// 뉴스피드 컴포넌트
+
 const NewsfeedComponent = ({ wholeFeed = false }) => {
   const [name, setName] = useState('Lorem');
   const [viewCnt, setViewCnt] = useState(200);
