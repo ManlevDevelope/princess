@@ -16,21 +16,23 @@ const Home = () => {
   }, []);
   return (
     <Layout>
-      <TextListSlider />
+      <TextListSlider
+        list={['전체', 'A시리즈', 'B시리즈', 'C시리즈', 'D시리즈', 'E시리즈']}
+      />
       <ImageSlider
         dots={true}
         items={[
-          <div className='slide-item'>
+          <div key={1} className='slide-item'>
             <Link to='/'>
               <img src='/img/banner-1.png' alt='' />
             </Link>
           </div>,
-          <div className='slide-item'>
+          <div key={2} className='slide-item'>
             <Link to='/'>
               <img src='/img/banner-1.png' alt='' />
             </Link>
           </div>,
-          <div className='slide-item'>
+          <div key={3} className='slide-item'>
             <Link to='/'>
               <img src='/img/banner-1.png' alt='' />
             </Link>

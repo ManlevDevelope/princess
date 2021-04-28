@@ -37,7 +37,7 @@ const SeenSaleComponent = () => {
       <ImageSlider
         dots={false}
         items={[
-          <div className='swiper-slide'>
+          <div key={1} className='swiper-slide'>
             <div className='horizontal-item'>
               <div className='one-item'>
                 <div className='thumb'>
@@ -69,7 +69,7 @@ const SeenSaleComponent = () => {
               </div>
             </div>
           </div>,
-          <div className='swiper-slide'>
+          <div key={2} className='swiper-slide'>
             <div className='horizontal-item'>
               <div className='one-item'>
                 <div className='thumb'>
@@ -101,7 +101,7 @@ const SeenSaleComponent = () => {
               </div>
             </div>
           </div>,
-          <div className='swiper-slide'>
+          <div key={3} className='swiper-slide'>
             <div className='horizontal-item'>
               <div className='one-item'>
                 <div className='thumb'>

@@ -31,6 +31,7 @@ const NewsfeedComponent = ({ wholeFeed = false }) => {
               <span className='user-name'>{name}</span>
             </Link>
             <div className='icon-grp'>
+              <img className='icon-view' src='/img/icon-view.svg' alt='' />
               <span className='view'>{viewCnt}</span>
             </div>
           </div>

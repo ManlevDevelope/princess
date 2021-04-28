@@ -847,6 +847,10 @@ a {
   width: 14px;
   height: 14px;
 }
+.icon-view {
+  width: 14px;
+  height: 14px;
+}
 .horizontal-item .one-item .item-footer .icon-grp .like::before {
   content: '';
   position: absolute;
@@ -860,7 +864,7 @@ a {
 .horizontal-item .one-item .item-header .icon-grp .view {
   font-size: 12px;
   color: #cdcdcd;
-  padding-left: 20px;
+  padding-left: 6px;
   position: relative;
 }
 .horizontal-item .one-item .item-header .icon-grp .view::before {

@@ -1,10 +1,9 @@
 import { Global, SlickImageContainer } from '../styled/SliderStyled';
 import Slick from 'react-slick';
 import { Container } from '../styled';
-import { memo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
-const ImageSlider = ({ items,dots }) => {
+const ImageSlider = ({ items, dots }) => {
   return (
     <Container style={{ color: 'white' }}>
       <SlickImageContainer>

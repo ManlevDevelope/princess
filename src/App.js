@@ -7,6 +7,7 @@ import ShopPage from './routes/ShopPage';
 import Layout from './layouts';
 import Newsfeed from './routes/Newsfeed';
 import NewsfeedDetail from './routes/NewsfeedDetail';
+import Mycard from './components/Mycard';
 
 function App() {
   return (
@@ -42,11 +43,7 @@ function App() {
           path='/newsfeed/:id'
           render={(props) => <NewsfeedDetail {...props} />}
         />
-        <Route
-          exact
-          path='/mycard'
-          render={(props) => <Newsfeed {...props} />}
-        />
+        <Route exact path='/mycard' render={(props) => <Mycard {...props} />} />
         <Route
           exact
           path='/card-newsfeed'

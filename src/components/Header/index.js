@@ -3,13 +3,16 @@ import MainHeader from './MainHeader';
 import ShopDetailHeader from './ShopDetailHeader';
 import NewsfeedHeader from './NewsfeedHeader';
 import NewsfeedDetailHeader from './NewfeedDetailHeader';
-import MyCardNewsfeed from './MyCardNewsfeed';
+import MyCardHeader from './MyCardHeader';
+import MyCardNewsfeedHeader from './MyCardNewsfeedHeader';
 
 const Header = () => {
   const { path } = useRouteMatch();
   switch (path) {
+    case '/mycard':
+      return <MyCardHeader />;
     case '/card-newsfeed':
-      return <MyCardNewsfeed />;
+      return <MyCardNewsfeedHeader />;
     case '/newsfeed':
       return <NewsfeedHeader />;
     case '/newsfeed/:id':

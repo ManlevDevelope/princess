@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
 import SeenSaleComponent from './SeenSaleComponent';
-import ImageSlider from './Slider/ImageSlider';
 
 const SeenSaleContainer = () => {
   return (
