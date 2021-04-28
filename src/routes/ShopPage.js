@@ -1,14 +1,23 @@
 import { Link } from 'react-router-dom';
 import { Container } from '../components/styled';
-import Layout from '../layouts';
 
-const ShopPage = () => {
+const ShopPage = ({ whole = false }) => {
   return (
     <Container>
       <div className='shop-item-wrap'>
         <div className='shop-item-grp'>
           <div className='title'>
-            <h1>판매중인 상품</h1>
+            <div>
+              <h1>판매중인 상품</h1>
+            </div>
+            <span>현재 판매중인 상품입니다.</span>
+            {whole && (
+              <span>
+                <Link className='shop-item-link' to='/shop'>
+                  전체보기
+                </Link>
+              </span>
+            )}
           </div>
           <div className='horizontal-item'>
             <div className='two-item'>

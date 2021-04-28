@@ -1,25 +1,35 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+// 특가 컴포넌트
 
 const SpecialSalesComponent = () => {
   const [cs, setCs] = useState([3, 2, 1]);
   const [item, setItem] = useState();
   const [content, setContent] = useState();
   const [itemNumber, setItemNumber] = useState([1, 2, 3]);
+
+  const [liked, setLiked] = useState(false);
+  const onClickLike = useCallback(() => {
+    setLiked((prev) => !prev);
+  }, [liked]);
   return (
     <div className='vertical-item-grp'>
       {cs.map((v, i) => (
         <div key={i} className='vertical-item'>
           <div className='thumb'>
-            <Link to='/shop'>
+            <Link to={`/shop/${itemNumber[i]}`}>
               <img src={`img/shop-item-${v}.png`} alt='' />
             </Link>
           </div>
           <div className='item-cont'>
             <div className='item-header'>
               <Link to={`/shop/${itemNumber[i]}`}>벅스봇 1</Link>
-              <button className='heart'>
-                <img src='/img/icon-heart.svg' alt='' />
+              <button className='heart' onClick={onClickLike}>
+                <img
+                  src={`/img/icon-heart${liked ? '-fill' : ''}.svg`}
+                  alt=''
+                />
               </button>
             </div>
             <div className='item-body'>

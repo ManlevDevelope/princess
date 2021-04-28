@@ -1,5 +1,6 @@
 import SpecialSalesComponent from './SpecialSalesComponent';
 
+//특가 컨테이너
 const SpecialSaleContainer = () => {
   return (
     <div className='shop-item-grp'>

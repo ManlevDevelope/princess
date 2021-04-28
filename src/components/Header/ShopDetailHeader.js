@@ -1,14 +1,22 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 const ShopDetailHeader = () => {
+  const history = useHistory();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+  const goback = () => history.goBack();
   return (
     <header>
       <div className='sub-nav-title'>
         <div className='container'>
           <nav>
-            <Link to='/' className='btn-back'>
+            <button onClick={goback} className='btn-back'>
               <img src='/img/btn-back.svg' alt='' />
-            </Link>
+            </button>
             <div className='title'>
               <h1>제품상세</h1>
             </div>

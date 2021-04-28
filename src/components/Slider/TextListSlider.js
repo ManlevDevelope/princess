@@ -3,7 +3,7 @@ import Slick from 'react-slick';
 import { useCallback, useState } from 'react';
 import { Container } from '../styled';
 
-const TextListSlider = () => {
+const TextListSlider = ({ list = [] }) => {
   const [choice, setChoice] = useState(0);
   const onClickMenu = useCallback(
     (c) => () => {
@@ -23,42 +23,15 @@ const TextListSlider = () => {
           slidesToShow={4}
           slidesToScroll={4}
         >
-          <div
-            onClick={onClickMenu(0)}
-            className={`slide-item ${choice === 0 ? 'active' : ''}`}
-          >
-            <button>전체</button>
-          </div>
-          <div
-            onClick={onClickMenu(1)}
-            className={`slide-item ${choice === 1 ? 'active' : ''}`}
-          >
-            <button>A 시리즈</button>
-          </div>
-          <div
-            onClick={onClickMenu(2)}
-            className={`slide-item ${choice === 2 ? 'active' : ''}`}
-          >
-            <button>B 시리즈</button>
-          </div>
-          <div
-            onClick={onClickMenu(3)}
-            className={`slide-item ${choice === 3 ? 'active' : ''}`}
-          >
-            <button>C 시리즈</button>
-          </div>
-          <div
-            onClick={onClickMenu(4)}
-            className={`slide-item ${choice === 4 ? 'active' : ''}`}
-          >
-            <button>D 시리즈</button>
-          </div>
-          <div
-            onClick={onClickMenu(5)}
-            className={`slide-item ${choice === 5 ? 'active' : ''}`}
-          >
-            <button>E 시리즈</button>
-          </div>
+          {list.map((value, i) => (
+            <div
+              key={i}
+              onClick={onClickMenu(i)}
+              className={`slide-item ${choice === i ? 'active' : ''}`}
+            >
+              <button>{value}</button>
+            </div>
+          ))}
         </Slick>
       </SlickTextContainer>
     </Container>
