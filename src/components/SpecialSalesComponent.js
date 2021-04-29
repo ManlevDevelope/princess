@@ -1,55 +1,47 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import changer from '../utils/moneyChanger';
 // 특가 컴포넌트
 
 const SpecialSalesComponent = () => {
-  const [cs, setCs] = useState([3, 2, 1]);
-  const [item, setItem] = useState();
-  const [content, setContent] = useState();
-  const [itemNumber, setItemNumber] = useState([1, 2, 3]);
-
   const [liked, setLiked] = useState(false);
+  const [price, setPrice] = useState(480000);
+  const [sales, setSales] = useState(20);
+  const [content, setContent] = useState(
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse libero'
+  );
+  const [imsiURL, setImsiURL] = useState(1);
+
   const onClickLike = useCallback(() => {
     setLiked((prev) => !prev);
   }, [liked]);
   return (
-    <div className='vertical-item-grp'>
-      {cs.map((v, i) => (
-        <div key={i} className='vertical-item'>
-          <div className='thumb'>
-            <Link to={`/shop/${itemNumber[i]}`}>
-              <img src={`img/shop-item-${v}.png`} alt='' />
-            </Link>
+    <div className='vertical-item'>
+      <div className='thumb'>
+        <Link to={`/shop/${imsiURL}`}>
+          <img src={`img/shop-item-1.png`} alt='' />
+        </Link>
+      </div>
+      <div className='item-cont'>
+        <div className='item-header'>
+          <Link to={`/shop/${imsiURL}`}>벅스봇 1</Link>
+          <button className='heart' onClick={onClickLike}>
+            <img src={`/img/icon-heart${liked ? '-fill' : ''}.svg`} alt='' />
+          </button>
+        </div>
+        <div className='item-body'>
+          <p>{content}</p>
+        </div>
+        <div className='item-footer'>
+          <div className='sale-price'>
+            <span>{changer(price)}원</span>
           </div>
-          <div className='item-cont'>
-            <div className='item-header'>
-              <Link to={`/shop/${itemNumber[i]}`}>벅스봇 1</Link>
-              <button className='heart' onClick={onClickLike}>
-                <img
-                  src={`/img/icon-heart${liked ? '-fill' : ''}.svg`}
-                  alt=''
-                />
-              </button>
-            </div>
-            <div className='item-body'>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                libero
-              </p>
-            </div>
-            <div className='item-footer'>
-              <div className='sale-price'>
-                <span>480,000원</span>
-              </div>
-              <div className='price'>
-                <span className='red'>20%</span>
-                384,000원
-              </div>
-            </div>
+          <div className='price'>
+            <span className='red'>{sales}%</span>
+            {changer(price * (100 - sales) * 0.01)}원
           </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };

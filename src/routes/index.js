@@ -7,7 +7,7 @@ import TextListSlider from '../components/Slider/TextListSlider';
 import SpecialSaleContainer from '../components/SpecialSaleContainer';
 import { Container } from '../components/styled';
 import Layout from '../layouts';
-import ShopPage from './ShopPage';
+import ShopPage from '../components/ShopPageContainer';
 
 const Home = () => {
   const dispatch = useDispatch();

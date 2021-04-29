@@ -20,15 +20,7 @@ function App() {
           path='/recognition'
           render={(props) => <Recognition {...props} />}
         />
-        <Route
-          exact
-          path='/shop'
-          render={(props) => (
-            <Layout>
-              <ShopPage {...props} />
-            </Layout>
-          )}
-        />
+        <Route exact path='/shop' render={(props) => <ShopPage {...props} />} />
         <Route
           exact
           path='/shop/:id'

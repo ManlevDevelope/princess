@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Link, useParams, useRouteMatch, withRouter } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ImageSlider from '../components/Slider/ImageSlider';
 import Layout from '../layouts';
 
@@ -29,6 +28,7 @@ const ShopDetail = () => {
             </div>,
           ]}
         />
+        {/* 상품상세 */}
         <div className='container'>
           <div className='product-detail-grp'>
             <div className='product-header'>
@@ -65,6 +65,7 @@ const ShopDetail = () => {
       </section>
 
       <section>
+        {/* 메인 글 */}
         <div className='container'>
           <div className='product-detail'>
             <img src='/img/shop-detail-1.png' alt='' />
@@ -81,6 +82,7 @@ const ShopDetail = () => {
       </section>
 
       <section>
+        {/* 댓글 */}
         <div className='container'>
           <div className='product-review'>
             <div className='review-count'>
@@ -216,6 +218,7 @@ const ShopDetail = () => {
         </div>
       </section>
       <section>
+        {/* 상품추천 */}
         <div className='container'>
           <div className='shop-item-wrap'>
             <div className='shop-item-grp'>
@@ -504,4 +507,4 @@ const ShopDetail = () => {
   );
 };
 
-export default withRouter(ShopDetail);
+export default ShopDetail;
