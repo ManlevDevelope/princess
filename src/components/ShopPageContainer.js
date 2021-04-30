@@ -114,7 +114,7 @@ const ShopPageContainer = ({ whole = false }) => {
 
       <div className='horizontal-item'>
         <div className='two-item'>
-          {items.map((v, i) => (
+          {items.map((v) => (
             <ShopPageComponent key={v.id} item={v} />
           ))}
         </div>
