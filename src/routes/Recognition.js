@@ -22,10 +22,17 @@ function Recognition() {
   const [start, setStart] = useState(false);
   const [result, setResult] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [devicesContent, setDevicesContent] = useState('');
   const window = useWindowSize();
 
   useEffect(() => {
     classifier = ml5.imageClassifier('./model/model.json', async () => {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const d = [];
+      devices.forEach((device) => {
+        d.push('Found device: ' + JSON.stringify(device) + '\n');
+      });
+      setDevicesContent(d);
       stream = await navigator.mediaDevices
         .getUserMedia({
           video: { facingMode: { exact: 'environment' } },
@@ -79,6 +86,7 @@ function Recognition() {
             <h1>스캔하기</h1>
           </div>
         </div>
+        <div>{devicesContent}</div>
         <div className='webcam'>
           <div className='upper'>
             <div className='capture'>
@@ -98,7 +106,6 @@ function Recognition() {
             </div>
           </div>
         </div>
-
         <div className='camera-bg'>
           {result.length > 0 && <Chart data={result[0]} />}
 
