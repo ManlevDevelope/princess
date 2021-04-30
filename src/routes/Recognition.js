@@ -28,9 +28,8 @@ function Recognition() {
     classifier = ml5.imageClassifier('./model/model.json', async () => {
       stream = await navigator.mediaDevices
         .getUserMedia({
-          video: true,
+          video: { facingMode: { exact: 'environment' } },
           audio: false,
-          facingMode: { exact: 'environment' },
         })
         .then((stream) => {
           videoRef.current.srcObject = stream;
