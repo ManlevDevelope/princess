@@ -1,55 +1,33 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import changer from '../utils/moneyChanger';
+import { BargainItem, SingleItem } from './Shop/ShopItem';
 // 특가 컴포넌트
 
-const SpecialSalesComponent = () => {
-  const [cs, setCs] = useState([3, 2, 1]);
-  const [item, setItem] = useState();
-  const [content, setContent] = useState();
-  const [itemNumber, setItemNumber] = useState([1, 2, 3]);
-
+const SpecialSalesComponent = ({ item }) => {
+  // 나중에 리덕스로 빼야됨, like unlike액션 둘다
   const [liked, setLiked] = useState(false);
-  const onClickLike = useCallback(() => {
-    setLiked((prev) => !prev);
-  }, [liked]);
+  const onClickLike = useCallback(
+    (id) => () => {
+      setLiked((prev) => !prev);
+      // dispatch('LIKE_REQUEST',id);
+    },
+    [item.id]
+  );
+  const { name, price, sales, content, imsiURL } = item;
+
   return (
-    <div className='vertical-item-grp'>
-      {cs.map((v, i) => (
-        <div key={i} className='vertical-item'>
-          <div className='thumb'>
-            <Link to={`/shop/${itemNumber[i]}`}>
-              <img src={`img/shop-item-${v}.png`} alt='' />
-            </Link>
-          </div>
-          <div className='item-cont'>
-            <div className='item-header'>
-              <Link to={`/shop/${itemNumber[i]}`}>벅스봇 1</Link>
-              <button className='heart' onClick={onClickLike}>
-                <img
-                  src={`/img/icon-heart${liked ? '-fill' : ''}.svg`}
-                  alt=''
-                />
-              </button>
-            </div>
-            <div className='item-body'>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                libero
-              </p>
-            </div>
-            <div className='item-footer'>
-              <div className='sale-price'>
-                <span>480,000원</span>
-              </div>
-              <div className='price'>
-                <span className='red'>20%</span>
-                384,000원
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className='vertical-item'>
+      <SingleItem
+        onClickLike={onClickLike(item.id)}
+        content={content}
+        name={name}
+        price={price}
+        sale_percent={sales}
+        liked={liked}
+        src={imsiURL}
+        type='bargain'
+      />
     </div>
   );
 };

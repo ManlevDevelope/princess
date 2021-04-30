@@ -3,7 +3,13 @@ import Slick from 'react-slick';
 import { Container } from '../styled';
 import { memo } from 'react';
 
-const ImageSlider = ({ items, dots }) => {
+const ImageSlider = ({
+  items,
+  dots,
+  slidesToShow = 1,
+  auto = true,
+  responsive = [],
+}) => {
   return (
     <Container style={{ color: 'white' }}>
       <SlickImageContainer>
@@ -12,13 +18,14 @@ const ImageSlider = ({ items, dots }) => {
           initialSlide={0}
           infinite
           arrows={false}
-          slidesToShow={1}
+          slidesToShow={slidesToShow}
           slidesToScroll={1}
           dots={dots}
-          autoplay={true}
+          autoplay={auto}
           autoplaySpeed={4000}
           cssEase={'linear'}
           pauseOnDotsHover={true}
+          responsive={responsive}
         >
           {items.map((Content, i) => Content)}
         </Slick>

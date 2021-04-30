@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const ImgStar = styled.img`
+  width: 16px;
+  height: 16px;
+  position: absolute;
+`;
+
 export const Container = styled.div`
   width: 1024px;
   margin: 0 auto;
