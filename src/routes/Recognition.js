@@ -30,6 +30,7 @@ function Recognition() {
         .getUserMedia({
           video: true,
           audio: false,
+          facingMode: { exact: 'environment' },
         })
         .then((stream) => {
           videoRef.current.srcObject = stream;

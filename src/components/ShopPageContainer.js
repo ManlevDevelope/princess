@@ -2,9 +2,100 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ShopPageComponent from './ShopPageComponent';
 
-const ShopPageContainer = ({ title, whole = false }) => {
+const ShopPageContainer = ({ whole = false }) => {
   // 바꿔야됨
-  const [items, setItems] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const [items, setItems] = useState([
+    {
+      id: 0,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 1,
+    },
+    {
+      id: 1,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 2,
+    },
+    {
+      id: 2,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 3,
+    },
+    {
+      id: 3,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 4,
+    },
+    {
+      id: 4,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 3,
+    },
+    {
+      id: 5,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 2,
+    },
+    {
+      id: 6,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 1,
+    },
+    {
+      id: 7,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 2,
+    },
+    {
+      id: 8,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 3,
+    },
+    {
+      id: 9,
+      name: '벅스봇',
+      rate: 5,
+      price: 48000,
+      sales: 0,
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
+      imsiURL: 4,
+    },
+  ]);
   return (
     <div className='shop-item-grp'>
       <div className='title'>
@@ -20,7 +111,14 @@ const ShopPageContainer = ({ title, whole = false }) => {
           </span>
         )}
       </div>
-      <ShopPageComponent />
+
+      <div className='horizontal-item'>
+        <div className='two-item'>
+          {items.map((v, i) => (
+            <ShopPageComponent key={v.id} item={v} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

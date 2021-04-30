@@ -7,36 +7,49 @@ export const SingleItem = (props) => (
     <ShopItem {...props} />
   </div>
 );
-export const DualItem = (props) => (
-  <div className='two-item'>
-    {props.data.map((Child, i) => (
-      <div key={i} className='item'>
-        <ShopItem {...props} />
-      </div>
-    ))}
-  </div>
-);
 
-const ShopItem = ({ rate, itm_name, price, sale_percent = 0 }) => (
+// type: bargain, normal
+export const ShopItem = ({
+  content,
+  rate,
+  name,
+  price,
+  liked,
+  onClickLike,
+  type,
+  src = 3,
+  sale_percent = 0,
+}) => (
   <>
     <div className='thumb'>
       <Link to='/shop/10'>
-        <img src='/img/shop-item-4.png' alt='' />
+        <img src={`/img/shop-item-${src}.png`} alt='' />
       </Link>
     </div>
     <div className='item-cont'>
-      <div className='icon-grp'>
-        <ImgStar className='' src='/img/icon-.star.svg' />
-        <span className='review'>{rate}점</span>
-        <button className='heart'>
-          <img src='/img/icon-heart.svg' alt='' />
-        </button>
-      </div>
-      <div className='item-header'>
-        <Link to='/shop/10'>{itm_name}</Link>
-      </div>
+      {type === 'bargain' ? (
+        <div className='item-header'>
+          <Link to={`/shop/${1}`}>{name}</Link>
+          <button className='heart' onClick={onClickLike}>
+            <img src={`/img/icon-heart${liked ? '-fill' : ''}.svg`} alt='' />
+          </button>
+        </div>
+      ) : (
+        <>
+          <div className='icon-grp'>
+            <ImgStar className='' src='/img/icon-.star.svg' />
+            <span className='review'>{rate}점</span>
+            <button className='heart' onClick={onClickLike}>
+              <img src={`/img/icon-heart${liked ? '-fill' : ''}.svg`} alt='' />
+            </button>
+          </div>
+          <div className='item-header'>
+            <Link to='/shop/10'>{name}</Link>
+          </div>
+        </>
+      )}
       <div className='item-body'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse</p>
+        <p>{content}</p>
       </div>
       <div className='item-footer'>
         {sale_percent > 0 ? (
