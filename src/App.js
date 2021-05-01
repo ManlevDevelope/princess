@@ -4,7 +4,6 @@ import Recognition from './routes/Recognition';
 import Home from './routes';
 import ShopDetail from './routes/ShopDetail';
 import ShopPage from './routes/ShopPage';
-import Layout from './layouts';
 import Newsfeed from './routes/Newsfeed';
 import NewsfeedDetail from './routes/NewsfeedDetail';
 import Mycard from './routes/Mycard';

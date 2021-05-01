@@ -12,7 +12,7 @@ const ShopPageContainer = ({ whole = false }) => {
       price: 48000,
       sales: 0,
       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
-      imsiURL: 1,
+      imsiURL: 3,
     },
     {
       id: 1,
@@ -66,7 +66,7 @@ const ShopPageContainer = ({ whole = false }) => {
       price: 48000,
       sales: 0,
       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
-      imsiURL: 1,
+      imsiURL: 4,
     },
     {
       id: 7,

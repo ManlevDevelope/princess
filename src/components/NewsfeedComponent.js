@@ -2,15 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // 뉴스피드 컴포넌트
+const NewsfeedComponent = ({ data, wholeFeed = false }) => {
+  const { name, viewCnt, content, like, commentCnt } = data;
 
-const NewsfeedComponent = ({ wholeFeed = false }) => {
-  const [name, setName] = useState('Lorem');
-  const [viewCnt, setViewCnt] = useState(200);
-  const [content, setContent] = useState(
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esselibero Lorem ipsum dolor sit amet consectetur adipisicing elit.Esse libero'
-  );
-  const [like, setLike] = useState(200);
-  const [commentCnt, setCommentCnt] = useState(200);
   const [more, setMore] = useState(false);
   useEffect(() => {
     setMore(wholeFeed ? false : true);

@@ -11,7 +11,7 @@ export const SingleItem = (props) => (
 // type: bargain, normal
 const ItemHeader = (props) => {
   switch (props.type) {
-    case 'SeenSale':
+    case 'seenSale':
       return (
         <div className='item-header'>
           <Link to='/shop/12'>{props.name}</Link>
@@ -39,12 +39,15 @@ const ItemHeader = (props) => {
           </button>
         </div>
       );
+    case 'normal':
     default:
       return (
         <>
           <div className='icon-grp'>
-            <ImgStar className='' src='/img/icon-.star.svg' />
-            <span className='review'>{props.rate}점</span>
+            <span className='review'>
+              <ImgStar className='review-star' src='/img/icon-.star.svg' />
+              {props.rate}점
+            </span>
             <button className='heart' onClick={props.onClickLike}>
               <img
                 src={`/img/icon-heart${props.liked ? '-fill' : ''}.svg`}

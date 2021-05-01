@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import SeenSaleComponent from './SeenSaleComponent';
+import ImageSlider from './Slider/ImageSlider';
+import ItemSilder from './Slider/ItemSlider';
 
 // 연관상품 컨테이너
 
@@ -22,7 +24,7 @@ const SeenSaleContainer = () => {
       price: 48000,
       sales: 0,
       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
-      imsiURL: 2,
+      imsiURL: 5,
     },
     {
       id: 2,
@@ -31,7 +33,7 @@ const SeenSaleContainer = () => {
       price: 48000,
       sales: 0,
       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
-      imsiURL: 3,
+      imsiURL: 5,
     },
     {
       id: 3,
@@ -40,7 +42,7 @@ const SeenSaleContainer = () => {
       price: 48000,
       sales: 0,
       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse',
-      imsiURL: 4,
+      imsiURL: 5,
     },
   ]);
   return (
@@ -49,7 +51,25 @@ const SeenSaleContainer = () => {
         <h1>내가 본 상품과 연관된 상품</h1>
         <span>최근 내가 본 상품과 관련된 상품이에요</span>
       </div>
-      <SeenSaleComponent item={items} />
+      <div className='horizontal-item'>
+        <SeenSaleComponent item={items[0]} />
+      </div>
+      <div style={{ marginTop: 32 }}>
+        <ItemSilder
+          dots={true}
+          items={[
+            <div key={1} className='horizontal-item'>
+              <SeenSaleComponent item={items[1]} />
+            </div>,
+            <div key={2} className='horizontal-item'>
+              <SeenSaleComponent item={items[2]} />
+            </div>,
+            <div key={3} className='horizontal-item'>
+              <SeenSaleComponent item={items[3]} />
+            </div>,
+          ]}
+        />
+      </div>
     </div>
   );
 };

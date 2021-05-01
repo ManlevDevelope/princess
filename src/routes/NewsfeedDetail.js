@@ -1,15 +1,10 @@
-import CommentContainer from '../components/CommentContainer';
-import NewsfeedComponent from '../components/NewsfeedComponent';
-import { Container } from '../components/styled';
+import NewsfeedContainer from '../components/NewsfeedContainer';
 import Layout from '../layouts';
 
 const NewsfeedDetail = () => {
   return (
     <Layout>
-      <Container>
-        <NewsfeedComponent wholeFeed={true} />
-      </Container>
-      <CommentContainer />
+      <NewsfeedContainer />
     </Layout>
   );
 };

@@ -10,6 +10,25 @@ export const Global = createGlobalStyle`
 }
 `;
 
+export const SlickItemContainer = styled.div`
+  overflow: hidden;
+  & .slide-item {
+    // text-align: center;
+  }
+  & .slick-dots {
+    display: flex !important;
+    position: absolute;
+    bottom: 10px;
+    margin-left: 16px;
+    li {
+      margin: 0 4px;
+      a {
+        margin-bottom: -10px;
+      }
+    }
+  }
+`;
+
 export const SlickImageContainer = styled.div`
   overflow: hidden;
   & .slide-item {

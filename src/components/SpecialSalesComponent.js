@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import changer from '../utils/moneyChanger';
-import { BargainItem, SingleItem } from './Shop/ShopItem';
+import { BargainItem, ShopItem, SingleItem } from './Shop/ShopItem';
 // 특가 컴포넌트
 
 const SpecialSalesComponent = ({ item }) => {
@@ -18,7 +18,7 @@ const SpecialSalesComponent = ({ item }) => {
 
   return (
     <div className='vertical-item'>
-      <SingleItem
+      <ShopItem
         onClickLike={onClickLike(item.id)}
         content={content}
         name={name}
