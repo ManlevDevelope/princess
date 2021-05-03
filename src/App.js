@@ -14,65 +14,64 @@ import AuthWithRoute from './HOC/AuthWithRoute';
 import { useSelector } from 'react-redux';
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.user?.me.email);
+  const isLoggedIn = useSelector((state) => state.user.me);
+  console.log(isLoggedIn);
   return (
-    <>
-      <Switch>
-        <Route exact path='/' render={(props) => <Home {...props} />} />
-        <Route
-          exact
-          path='/recognition'
-          render={(props) => <Recognition {...props} />}
-        />
-        <AuthWithRoute
-          auth={isLoggedIn}
-          exact
-          path='/shop'
-          component={ShopPage}
-          render={(props) => <ShopPage {...props} />}
-        />
-        {/* <Route exact path='/shop' render={(props) => <ShopPage {...props} />} /> */}
-        <AuthWithRoute
-          auth={isLoggedIn}
-          exact
-          path='/shop/:id'
-          render={(props) => <ShopDetail {...props} />}
-        />
-        <AuthWithRoute
-          auth={isLoggedIn}
-          exact
-          path='/newsfeed'
-          render={(props) => <Newsfeed {...props} />}
-        />
-        <AuthWithRoute
-          auth={isLoggedIn}
-          exact
-          path='/newsfeed/:id'
-          render={(props) => <NewsfeedDetail {...props} />}
-        />
-        <AuthWithRoute
-          auth={isLoggedIn}
-          exact
-          path='/mycard'
-          render={(props) => <Mycard {...props} />}
-        />
-        <AuthWithRoute
-          auth={isLoggedIn}
-          exact
-          path='/card-newsfeed'
-          render={(props) => <Newsfeed {...props} />}
-        />
-        <Route exact path='/login' render={(props) => <Login {...props} />} />
-        <Route exact path='/signup' render={(props) => <Signup {...props} />} />
-        <AuthWithRoute
-          auth={isLoggedIn}
-          exact
-          path='/info'
-          render={(props) => <UserInfo {...props} />}
-        />
-        <Redirect to='/not-found' />
-      </Switch>
-    </>
+    <Switch>
+      <Route exact path='/' render={(props) => <Home {...props} />} />
+      <Route
+        exact
+        path='/recognition'
+        render={(props) => <Recognition {...props} />}
+      />
+      <AuthWithRoute
+        auth={isLoggedIn}
+        exact
+        path='/shop'
+        component={ShopPage}
+        render={(props) => <ShopPage {...props} />}
+      />
+      {/* <Route exact path='/shop' render={(props) => <ShopPage {...props} />} /> */}
+      <AuthWithRoute
+        auth={isLoggedIn}
+        exact
+        path='/shop/:id'
+        render={(props) => <ShopDetail {...props} />}
+      />
+      <AuthWithRoute
+        auth={isLoggedIn}
+        exact
+        path='/newsfeed'
+        render={(props) => <Newsfeed {...props} />}
+      />
+      <AuthWithRoute
+        auth={isLoggedIn}
+        exact
+        path='/newsfeed/:id'
+        render={(props) => <NewsfeedDetail {...props} />}
+      />
+      <AuthWithRoute
+        auth={isLoggedIn}
+        exact
+        path='/mycard'
+        render={(props) => <Mycard {...props} />}
+      />
+      <AuthWithRoute
+        auth={isLoggedIn}
+        exact
+        path='/card-newsfeed'
+        render={(props) => <Newsfeed {...props} />}
+      />
+      <Route exact path='/login' render={(props) => <Login {...props} />} />
+      <Route exact path='/signup' render={(props) => <Signup {...props} />} />
+      <AuthWithRoute
+        auth={isLoggedIn}
+        exact
+        path='/info'
+        render={(props) => <UserInfo {...props} />}
+      />
+      <Redirect to='/not-found' />
+    </Switch>
   );
 }
 

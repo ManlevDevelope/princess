@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signUpRequestAction } from '../reducer/user';
 import useInput from './hooks/useInput';
 import { Container } from './styled';
 
 const SignupContainer = () => {
+  const dispatch = useDispatch();
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [username, onChangeUsername] = useInput('');
@@ -31,16 +34,22 @@ const SignupContainer = () => {
   const onCheckPhone = useCallback((e) => {
     e.preventDefault();
 
-    alert('준비중 입니다. 그냥 넘어가세요.');
+    alert('준비중 입니다.');
   }, []);
   const onSubmit = useCallback(() => {
     if (password !== passwordCheck) {
       alert('비밀번호가 일치하지 않습니다');
       return;
     }
-    console.log(email, password, passwordCheck, nickname, username);
-    // dispatch({type:SIGN_UP_REQUEST,data:{email,password,nickname}})
-  }, [email, password, passwordCheck, nickname, username]);
+    dispatch(
+      signUpRequestAction({
+        email,
+        password,
+        username,
+        nickname,
+      })
+    );
+  }, [email, password, nickname, passwordCheck, username]);
   return (
     <Container>
       <div className='create-account-grp'>
@@ -52,8 +61,8 @@ const SignupContainer = () => {
             <Link to='/login' replace>
               로그인
             </Link>
-            <Link to='001_searchId.html'>아이디 찾기</Link>
-            <Link to='001_searchPassword.html'>비밀번호 찾기</Link>
+            <Link to='/'>아이디 찾기</Link>
+            <Link to='/'>비밀번호 찾기</Link>
           </div>
         </div>
         <div className='login-form'>

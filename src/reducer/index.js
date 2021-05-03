@@ -1,8 +1,8 @@
-import userReducer from './user';
+import user from './user';
 import { combineReducers } from 'redux';
 
 const rootReducer = (state, action) => {
-  const combineReducer = combineReducers({ userReducer });
+  const combineReducer = combineReducers({ user });
   return combineReducer(state, action);
 };
 
