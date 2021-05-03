@@ -386,7 +386,7 @@ a {
   font-weight: bold;
   color: #94268f;
 }
-.login-btn a {
+.login-btn button {
   text-align: center;
   display: block;
   width: 100%;
@@ -409,7 +409,7 @@ a {
   height: 48px;
   border-radius: 4px;
 }
-.create-account-btn a {
+.create-account-btn button {
   text-align: center;
   display: block;
   width: 100%;
@@ -445,6 +445,10 @@ a {
 .create-account-grp .form-grp {
   margin-bottom: 16px;
 }
+.create-account-grp .form-grp p {
+  color: red;
+}
+
 .create-account-grp .form-grp label {
   width: 100%;
   display: block;

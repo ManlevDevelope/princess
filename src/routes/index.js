@@ -10,10 +10,10 @@ import Layout from '../layouts';
 import ShopPage from '../components/ShopPageContainer';
 
 const Home = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch({ type: 'INIT' });
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch({ type: 'INIT' });
+  // }, []);
   return (
     <Layout>
       <TextListSlider
