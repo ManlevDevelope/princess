@@ -5,7 +5,9 @@ import {
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
-  SING_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_REQUEST,
+  SIGN_UP_FAILURE,
 } from '../Actions';
 import produce from '../utils';
 
@@ -31,7 +33,7 @@ export const loginRequestAction = (data) => {
 export const signUpRequestAction = (data) => {
   console.log('reducer signup request:', data);
   return {
-    type: SING_UP_REQUEST,
+    type: SIGN_UP_REQUEST,
     data,
   };
 };
@@ -66,6 +68,20 @@ const reducer = (state = initialState, action) =>
       case LOG_OUT_FAILURE:
         draft.logOutLoading = false;
         draft.logOutError = action.error;
+        break;
+      case SIGN_UP_REQUEST:
+        draft.signUpLoading = true;
+        draft.signUpDone = false;
+        draft.signUpError = null;
+        break;
+      case SIGN_UP_SUCCESS:
+        draft.signUpLoading = false;
+        draft.signUpDone = true;
+        draft.me = null;
+        break;
+      case SIGN_UP_FAILURE:
+        draft.signUpLoading = false;
+        draft.signUpError = action.error;
         break;
       default:
         break;

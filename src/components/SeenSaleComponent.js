@@ -13,7 +13,6 @@ const SeenSaleComponent = ({ item }) => {
     [item.id]
   );
   const { name, price, sales, content, imsiURL } = item;
-  console.log('object');
   return (
     <SingleItem
       content={content}

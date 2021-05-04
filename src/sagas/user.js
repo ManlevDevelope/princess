@@ -11,7 +11,12 @@ import {
   LOG_IN_FAILURE,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
+  LOG_OUT_FAILURE,
   LOG_OUT_REQUEST,
+  LOG_OUT_SUCCESS,
+  SIGN_UP_FAILURE,
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
 } from '../Actions';
 
 // function api(data) {
@@ -46,16 +51,19 @@ function loginAPI(data) {
 
 function* login(action) {
   try {
-    // yield call(loginAPI, action.data);
     yield delay(1000);
+    const { history, email, password } = action.data;
+    // yield call(loginAPI, {email, password});
+    history.go(-(history.length - 1));
     yield put({
       type: LOG_IN_SUCCESS,
-      data: action.data,
+      data: { email, password },
     });
   } catch (err) {
     console.error(err);
     yield put({
       type: LOG_IN_FAILURE,
+      error: err.response.data,
     });
   }
 }
@@ -74,18 +82,44 @@ function* logOut(action) {
     // yield call(logOutAPI, action.data);
     yield delay(1000);
     yield put({
-      type: LOG_IN_SUCCESS,
+      type: LOG_OUT_SUCCESS,
     });
   } catch (err) {
     console.error(err);
     yield put({
-      type: LOG_IN_FAILURE,
+      type: LOG_OUT_FAILURE,
+      error: err.response.data,
     });
   }
 }
 
 function* watchLogOut() {
   yield takeLatest(LOG_OUT_REQUEST, logOut);
+}
+
+function signUpAPI(data) {
+  return axios.get('/user', data);
+  // console.log('saga api test');
+}
+
+function* signUp(action) {
+  try {
+    // yield call(signUpAPI, action.data);
+    yield delay(1000);
+    yield put({
+      type: SIGN_UP_SUCCESS,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: SIGN_UP_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function* watchSignUp() {
+  yield takeLatest(SIGN_UP_REQUEST, signUp);
 }
 
 export default function* userSaga() {
