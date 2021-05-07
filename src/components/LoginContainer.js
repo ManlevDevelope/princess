@@ -27,7 +27,7 @@ const LoginContainer = () => {
       <div className='login-form-grp'>
         <div className='login-grp'>
           <div className='title'>
-            <Link to=''>POCKETHIVE</Link>
+            <Link to='/'>POCKETHIVE</Link>
           </div>
           <div className='login-form'>
             <form onSubmit={onSubmit}>

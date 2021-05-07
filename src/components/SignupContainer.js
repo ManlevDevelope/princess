@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { signUpRequestAction } from '../reducer/user';
+import Button from './common/Button';
 import useInput from './hooks/useInput';
 import { Container } from './styled';
 
 const SignupContainer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { signUpLoading } = useSelector((state) => state.user);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [username, onChangeUsername] = useInput('');
@@ -36,20 +40,25 @@ const SignupContainer = () => {
 
     alert('준비중 입니다.');
   }, []);
-  const onSubmit = useCallback(() => {
-    if (password !== passwordCheck) {
-      alert('비밀번호가 일치하지 않습니다');
-      return;
-    }
-    dispatch(
-      signUpRequestAction({
-        email,
-        password,
-        username,
-        nickname,
-      })
-    );
-  }, [email, password, nickname, passwordCheck, username]);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (password !== passwordCheck) {
+        alert('비밀번호가 일치하지 않습니다');
+        return;
+      }
+      dispatch(
+        signUpRequestAction({
+          email,
+          password,
+          username,
+          nickname,
+          history,
+        })
+      );
+    },
+    [email, password, nickname, passwordCheck, username]
+  );
   return (
     <Container>
       <div className='create-account-grp'>
@@ -134,7 +143,7 @@ const SignupContainer = () => {
               </div>
             </div>
             <div className='complete-btn'>
-              <button>완료</button>
+              <Button loading={signUpLoading}>완료</Button>
             </div>
           </form>
         </div>

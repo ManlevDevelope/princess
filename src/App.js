@@ -62,8 +62,12 @@ function App() {
         path='/card-newsfeed'
         render={(props) => <Newsfeed {...props} />}
       />
-      <Route exact path='/login' render={(props) => <Login {...props} />} />
-      <Route exact path='/signup' render={(props) => <Signup {...props} />} />
+      {!isLoggedIn && (
+        <Route exact path='/login' render={(props) => <Login {...props} />} />
+      )}
+      {!isLoggedIn && (
+        <Route exact path='/signup' render={(props) => <Signup {...props} />} />
+      )}
       <AuthWithRoute
         auth={isLoggedIn}
         exact

@@ -54,7 +54,7 @@ function* login(action) {
     yield delay(1000);
     const { history, email, password } = action.data;
     // yield call(loginAPI, {email, password});
-    history.go(-(history.length - 1));
+    history.replace('/');
     yield put({
       type: LOG_IN_SUCCESS,
       data: { email, password },
@@ -104,10 +104,15 @@ function signUpAPI(data) {
 
 function* signUp(action) {
   try {
-    // yield call(signUpAPI, action.data);
     yield delay(1000);
+    const { history, nickname } = action.data;
+    // const {}=action.data;
+
+    // yield call(signUpAPI, action.data);
+    history.replace('/');
     yield put({
       type: SIGN_UP_SUCCESS,
+      data: { nickname },
     });
   } catch (err) {
     console.error(err);
@@ -123,5 +128,5 @@ function* watchSignUp() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogin), fork(watchLogOut)]);
+  yield all([fork(watchLogin), fork(watchLogOut), fork(watchSignUp)]);
 }
