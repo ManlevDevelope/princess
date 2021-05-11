@@ -7,7 +7,7 @@ const Chart = (props) => {
   return (
     <>
       <h3 style={{ color: 'white' }}>
-        Classification Confidence: {label}{' '}
+        일치율: {label}{' '}
         <span style={{ color: confidence > 0.7 ? 'green' : 'white' }}>
           {confidence}
         </span>
