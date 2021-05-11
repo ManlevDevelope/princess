@@ -12,13 +12,13 @@ const MainFooter = () => {
             </div>
             <Link to='/'>홈</Link>
           </div>
-          <div className='menu-btn'>
+          {/* <div className='menu-btn'>
             <div className='bottom-icon'>
               <img alt='icon-card' className='icon' src='/img/icon-card.svg' />
               <span>내 카드</span>
             </div>
             <Link to='/card-newsfeed'>내카드</Link>
-          </div>
+          </div> */}
           <div className='menu-btn'>
             <div className='bottom-icon'>
               <img alt='icon-scan' className='icon' src='/img/icon-scan.svg' />

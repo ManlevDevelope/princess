@@ -8,17 +8,25 @@ import {
   SIGN_UP_SUCCESS,
   SIGN_UP_REQUEST,
   SIGN_UP_FAILURE,
+  NICK_CHECK_REQUEST,
+  NICK_CHECK_SUCCESS,
+  NICK_CHECK_FAILURE,
+  NICK_CHANGED,
 } from '../Actions';
 import produce from '../utils';
 
 const initialState = {
   me: null,
+  nickCheck: false,
   logInLoading: false,
   logInDone: false,
   logInError: null,
   logOutLoading: false,
   logOutDone: false,
   logOutError: null,
+  checkNickLoading: false,
+  checkNickDone: false,
+  checkNickError: null,
   signUpLoading: false,
   signUpDone: false,
   signUpError: null,
@@ -68,6 +76,23 @@ const reducer = (state = initialState, action) =>
       case LOG_OUT_FAILURE:
         draft.logOutLoading = false;
         draft.logOutError = action.error;
+        break;
+      case NICK_CHECK_REQUEST:
+        draft.nickCheckLoading = true;
+        draft.nickCheckDone = false;
+        draft.nickCheckError = null;
+        break;
+      case NICK_CHECK_SUCCESS:
+        draft.nickCheckLoading = false;
+        draft.nickCheckDone = true;
+        draft.nickCheck = action.data;
+        break;
+      case NICK_CHANGED:
+        draft.nickCheck = false;
+        break;
+      case NICK_CHECK_FAILURE:
+        draft.nickCheckError = action.error;
+        draft.nickCheckLoading = false;
         break;
       case SIGN_UP_REQUEST:
         draft.signUpLoading = true;

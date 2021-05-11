@@ -4,16 +4,13 @@ const AuthWithRoute = ({ auth, component: Component, render, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        auth ? (
-          render ? (
-            render(props)
-          ) : (
-            <Component {...props} />
-          )
-        ) : (
-          <Redirect to='/login' />
-        )
+      render={
+        (props) =>
+          // auth ? (
+          render ? render(props) : <Component {...props} />
+        // ) : (
+        //   <Redirect to='/login' />
+        // )
       }
     />
   );

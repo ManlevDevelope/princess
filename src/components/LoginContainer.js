@@ -6,19 +6,31 @@ import useInput from '../components/hooks/useInput';
 import { loginRequestAction } from '../reducer/user';
 import { Container } from './styled';
 import Button from './common/Button';
+import { useEffect } from 'react';
 
 const LoginContainer = () => {
   const dispatch = useDispatch();
-  const { logInLoading } = useSelector((state) => state.user);
+  const { logInLoading, logInError, logInDone } = useSelector(
+    (state) => state.user
+  );
   const history = useHistory();
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
 
+  useEffect(() => {
+    if (logInError) {
+      alert(logInError);
+    }
+  }, [logInError]);
+
+  useEffect(() => {
+    if (logInDone) history.replace('/');
+  }, [logInDone]);
+
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(loginRequestAction({ email, password, history }));
-      // history.replace('/');
+      dispatch(loginRequestAction({ email, password }));
     },
     [email, password]
   );

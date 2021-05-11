@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { Link, useHistory } from 'react-router-dom';
+import { NICK_CHANGED, NICK_CHECK_REQUEST } from '../Actions';
 import { signUpRequestAction } from '../reducer/user';
 import Button from './common/Button';
 import useInput from './hooks/useInput';
@@ -11,27 +13,59 @@ import { Container } from './styled';
 const SignupContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { signUpLoading } = useSelector((state) => state.user);
+  const {
+    signUpLoading,
+    signUpError,
+    signUpDone,
+    nickCheck,
+    nickCheckError,
+  } = useSelector((state) => state.user);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const [username, onChangeUsername] = useInput('');
-  const [nickname, onChangeNickname] = useInput('');
+  const [name, onChangeName] = useInput('');
+  const [nickname, setNickname] = useState('');
   const [number, onChangeNumber] = useInput('');
   const [passwordCheck, setPasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
 
+  useEffect(() => {
+    if (nickCheckError) alert(nickCheckError);
+  }, [nickCheckError]);
+  useEffect(() => {
+    if (signUpError) alert(signUpError);
+  }, [signUpError]);
+  useEffect(() => {
+    if (signUpDone) history.replace('/');
+  }, [signUpDone]);
+
+  const onChangeNickname = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (nickCheck) {
+        dispatch({ type: NICK_CHANGED });
+      }
+      setNickname(e.target.value);
+    },
+    [nickname, nickCheck]
+  );
+
   const onChangePasswordCheck = useCallback(
     (e) => {
+      e.preventDefault();
       setPasswordCheck(e.target.value);
       setPasswordError(e.target.value !== password);
     },
     [password]
   );
 
-  const onDupleCheck = useCallback(
+  const onNicknameCheck = useCallback(
     (e) => {
       e.preventDefault();
-      // dispatch({type:CHECK_NICKNAME,data:nickname});
+      if (nickname === '') {
+        alert('닉네임을 입력해주세요');
+        return;
+      }
+      dispatch({ type: NICK_CHECK_REQUEST, data: nickname });
     },
     [nickname]
   );
@@ -47,17 +81,19 @@ const SignupContainer = () => {
         alert('비밀번호가 일치하지 않습니다');
         return;
       }
+      if (!nickCheck) {
+        alert('닉네임체크를 다시해주세요');
+      }
       dispatch(
         signUpRequestAction({
           email,
           password,
-          username,
+          name,
           nickname,
-          history,
         })
       );
     },
-    [email, password, nickname, passwordCheck, username]
+    [email, password, nickname, passwordCheck, name, nickCheck]
   );
   return (
     <Container>
@@ -110,8 +146,8 @@ const SignupContainer = () => {
             <div className='form-grp'>
               <label htmlFor='name'>이름</label>
               <input
-                value={username}
-                onChange={onChangeUsername}
+                value={name}
+                onChange={onChangeName}
                 type='text'
                 id='name'
                 required
@@ -127,7 +163,9 @@ const SignupContainer = () => {
                   id='nick'
                   required
                 />
-                <button onClick={onDupleCheck}>중복확인</button>
+                <button onClick={onNicknameCheck}>
+                  {nickCheck ? '성공' : '중복확인'}
+                </button>
               </div>
             </div>
             <div className='form-grp'>
