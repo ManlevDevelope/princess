@@ -74,7 +74,6 @@ function* watchLogOut() {
 
 function signUpAPI(data) {
   return axios.post('/user', data);
-  // console.log('saga api test');
 }
 
 function* signUp(action) {
@@ -103,7 +102,6 @@ function checkNickAPI(data) {
 
 function* checkNickname(action) {
   try {
-    console.log(action);
     const result = yield call(checkNickAPI, { nickname: action.data });
     yield put({
       type: NICK_CHECK_SUCCESS,

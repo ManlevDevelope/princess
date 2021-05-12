@@ -12,6 +12,7 @@ import Login from './routes/Login';
 import Signup from './routes/Signup';
 import AuthWithRoute from './HOC/AuthWithRoute';
 import { useSelector } from 'react-redux';
+import ItemRegist from './routes/ItemRegist';
 
 function App() {
   const isLoggedIn = useSelector((state) => state.user.me);
@@ -23,6 +24,11 @@ function App() {
         exact
         path='/recognition'
         render={(props) => <Recognition {...props} />}
+      />
+      <Route
+        exact
+        path='/regist'
+        render={(props) => <ItemRegist {...props} />}
       />
       <AuthWithRoute
         auth={isLoggedIn}
@@ -62,19 +68,16 @@ function App() {
         path='/card-newsfeed'
         render={(props) => <Newsfeed {...props} />}
       />
-      {!isLoggedIn && (
-        <Route exact path='/login' render={(props) => <Login {...props} />} />
-      )}
-      {!isLoggedIn && (
-        <Route exact path='/signup' render={(props) => <Signup {...props} />} />
-      )}
+      <Route exact path='/login' render={(props) => <Login {...props} />} />
+
+      <Route exact path='/signup' render={(props) => <Signup {...props} />} />
       <AuthWithRoute
         auth={isLoggedIn}
         exact
         path='/info'
         render={(props) => <UserInfo {...props} />}
       />
-      <Redirect to='/not-found' />
+      {/* <Redirect to='/not-found' /> */}
     </Switch>
   );
 }

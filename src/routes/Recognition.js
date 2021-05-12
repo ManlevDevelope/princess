@@ -7,8 +7,10 @@ import useWindowSize from '../components/hooks/useWindowSize';
 import Chart from '../Chart';
 import { ScanContainer } from '../components/styled';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { useCallback } from 'react';
+import Layout from '../layouts';
 
 // let classifier;
 // let stream;
@@ -19,9 +21,12 @@ let classifier;
 let stream;
 function Recognition() {
   const videoRef = useRef();
+  const canvasRef = useRef();
   const [start, setStart] = useState(false);
   const [result, setResult] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [capture, setCapture] = useState(false);
+  const history = useHistory();
   // const [devicesContent, setDevicesContent] = useState('');
   const window = useWindowSize();
 
@@ -43,6 +48,7 @@ function Recognition() {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
           setLoaded(true);
+          toggle();
           return stream;
         });
     });
@@ -67,7 +73,27 @@ function Recognition() {
     setStart(!start);
     setResult([]);
   };
-
+  const onClickCapture = () => {
+    setStart(false);
+    const context = canvasRef.current.getContext('2d');
+    console.log(videoRef.current.clientWidth, videoRef.current.clientHeight);
+    var scale = Math.max(
+      window.width / videoRef.current.clientWidth,
+      window.height / videoRef.current.clientHeight
+    );
+    // get the top left position of the image
+    var x = window.width / 2 - (videoRef.current.clientWidth / 2) * scale;
+    var y = window.height / 2 - (videoRef.current.clientHeight / 2) * scale;
+    context.drawImage(
+      videoRef.current,
+      x,
+      y,
+      videoRef.current.clientWidth * scale,
+      videoRef.current.clientHeight * scale
+    );
+    console.log(context);
+    setCapture(true);
+  };
   return (
     <ScanContainer>
       <Loader
@@ -76,7 +102,12 @@ function Recognition() {
         height={200}
         width={200}
         visible={!loaded}
-        style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '30px',
+          alignItems: 'center',
+        }}
       />
       <div className='scan-bg'>
         <div className='scan-header'>
@@ -87,22 +118,14 @@ function Recognition() {
             <h1>스캔하기</h1>
           </div>
         </div>
-        {/* <div>{devicesContent}</div> */}
         <div className='webcam'>
           <div className='upper'>
             <div className='capture'>
-              <video
-                autoPlay
-                ref={videoRef}
+              {!capture && <video autoPlay ref={videoRef} id='webcam' />}
+              <canvas
                 width={window.width}
                 height={window.height}
-                style={{
-                  height: '100vh',
-                  width: '100%',
-                  objectFit: 'cover',
-                  position: 'absolute',
-                }}
-                id='webcam'
+                ref={canvasRef}
               />
             </div>
           </div>
@@ -111,7 +134,7 @@ function Recognition() {
           {result.length > 0 && <Chart data={result[0]} />}
 
           {loaded && (
-            <StartButton onClick={() => toggle()}>
+            <StartButton onClick={() => onClickCapture()}>
               {start ? 'Stop' : <img src='/img/icon-scan-white.svg' alt='' />}
             </StartButton>
           )}

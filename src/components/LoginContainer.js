@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import useInput from '../components/hooks/useInput';
 import { loginRequestAction } from '../reducer/user';
@@ -64,9 +63,7 @@ const LoginContainer = () => {
                 />
               </div>
               <div className='login-btn'>
-                <Button type='submit' loading={logInLoading}>
-                  로그인
-                </Button>
+                <Button loading={logInLoading}>로그인</Button>
               </div>
               <div className='create-account-btn'>
                 <Link to='/signup' replace>

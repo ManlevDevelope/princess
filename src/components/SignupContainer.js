@@ -13,13 +13,8 @@ import { Container } from './styled';
 const SignupContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const {
-    signUpLoading,
-    signUpError,
-    signUpDone,
-    nickCheck,
-    nickCheckError,
-  } = useSelector((state) => state.user);
+  const { signUpLoading, signUpError, signUpDone, nickCheck, nickCheckError } =
+    useSelector((state) => state.user);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [name, onChangeName] = useInput('');
@@ -35,7 +30,7 @@ const SignupContainer = () => {
     if (signUpError) alert(signUpError);
   }, [signUpError]);
   useEffect(() => {
-    if (signUpDone) history.replace('/');
+    if (signUpDone) history.replace('/login');
   }, [signUpDone]);
 
   const onChangeNickname = useCallback(

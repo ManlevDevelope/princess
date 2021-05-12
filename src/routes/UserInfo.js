@@ -7,15 +7,15 @@ const UserInfo = () => {
     <Layout>
       <UserProfileComponent />
       <div className='card-grp'>
-        <CardComponent imageSource={'pd1'} />
-        <CardComponent imageSource={'pd2'} />
-        <CardComponent imageSource={'pd3'} />
-        <CardComponent imageSource={'sb1'} />
-        <CardComponent imageSource={'sb2'} />
-        <CardComponent imageSource={'sb3'} />
-        <CardComponent imageSource={'sb4'} />
-        <CardComponent imageSource={'sb5'} />
-        <CardComponent imageSource={'sb6'} />
+        <CardComponent imageSource={'pd1.jpg'} />
+        <CardComponent imageSource={'pd2.jpg'} />
+        <CardComponent imageSource={'pd3.jpg'} />
+        <CardComponent imageSource={'sb1.jpg'} />
+        <CardComponent imageSource={'sb2.jpg'} />
+        <CardComponent imageSource={'sb3.jpg'} />
+        <CardComponent imageSource={'sb4.jpg'} />
+        <CardComponent imageSource={'sb5.jpg'} />
+        <CardComponent imageSource={'sb6.jpg'} />
       </div>
     </Layout>
   );
