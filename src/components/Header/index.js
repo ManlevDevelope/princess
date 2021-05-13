@@ -6,9 +6,12 @@ import NewsfeedDetailHeader from './NewfeedDetailHeader';
 import MyCardHeader from './MyCardHeader';
 import MyCardNewsfeedHeader from './MyCardNewsfeedHeader';
 import UserInfoHeader from './UserInfoHeader';
+import RegistHeader from './RegistHeader';
 const Header = () => {
   const { path } = useRouteMatch();
   switch (path) {
+    case '/regist':
+      return <RegistHeader />;
     case '/mycard':
       return <MyCardHeader />;
     case '/card-newsfeed':
