@@ -72,6 +72,7 @@ function Recognition() {
     setResult([]);
   };
   const onClickCapture = () => {
+    // if (result[0].confidence > 0.7) {
     setStart(false);
     const context = canvasRef.current.getContext('2d');
     console.log(videoRef.current.clientWidth, videoRef.current.clientHeight);
@@ -93,28 +94,55 @@ function Recognition() {
     // const blob = dataURItoBlob(canvasRef.current.toDataURL('image/jpeg'));
     // const formData = new FormData();
     // formData.append('file', blob);
+    const recogResult = result[0].label;
+    let itemName = '';
+    let real;
+    if (recogResult.indexOf('(가품)') !== -1) {
+      itemName = recogResult.split('(가품)')[0];
+      real = false;
+    } else {
+      itemName = recogResult;
+      real = true;
+    }
+    console.log(itemName);
     history.push({
       pathname: '/regist',
       captured: canvasRef.current.toDataURL('image/jpeg'),
+      name: itemName,
+      real,
     });
+    // }
   };
   return (
     <ScanContainer>
-      <div>
-        <Loader
-          type='Oval'
-          color='#777'
-          height={100}
-          width={100}
-          visible={!loaded}
+      <Loader
+        type='Oval'
+        color='#777'
+        height={100}
+        width={100}
+        visible={!loaded}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '30px',
+          alignItems: 'center',
+        }}
+      />
+      {loaded && (
+        <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '30px',
-            alignItems: 'center',
+            marginTop: 44,
+            position: 'absolute',
+            border: `5px solid ${
+              result[0]?.confidence > 0.7 ? 'green' : 'red'
+            }`,
+            width: window.width,
+            height: window.height - 194,
+            zIndex: 1001,
           }}
-        />
-      </div>
+        ></div>
+      )}
+
       <div className='scan-bg'>
         <div className='scan-header'>
           <Link className='btn-back' to='/'>
@@ -136,7 +164,8 @@ function Recognition() {
             </div>
           </div>
         </div>
-        <div className='camera-bg'>
+
+        <div style={{ border: '' }} className='camera-bg'>
           {result.length > 0 && <Chart data={result[0]} />}
 
           {loaded && (

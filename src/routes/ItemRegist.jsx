@@ -1,18 +1,16 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react"
 import {  useLocation } from "react-router";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { Container } from "../components/styled";
 import Layout from "../layouts"
-let canvas;
 
 const ItemRegist = () => {
-  const {captured}=useLocation();
+  const {captured,name,real}=useLocation();
   const {width,height} = useWindowSize();
-  
   // const canvasRef=useRef();
   useEffect(()=>{
-    console.log(captured);
   },[captured])
   return (
     <Layout>
@@ -28,11 +26,11 @@ const ItemRegist = () => {
             </div>
             <div style={{flex:1}}>
               <div style={{flex:1,margin:20}}>
-                <div style={{fontWeight:700,fontSize:'18px'}}>Title</div>
+                <div style={{fontWeight:700,fontSize:'18px'}}>{name}</div>
                 <div style={{color:'#787878',fontSize:'14px'}}>시리즈A</div>
               </div>
-              <div style={{color:'#787878',marginLeft:20,marginRight:20,fontSize:"12px"}}>
-                <p>관리코드: 123141515</p>
+              <div style={{color:'#787878',marginLeft:20,marginRight:20,fontSize:"12px",whiteSpace:'nowrap'}}>
+                <p>관리코드: 12314151</p>
                 <p>상품ID: ASDF1234</p>
               </div>
             </div>
@@ -42,16 +40,23 @@ const ItemRegist = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
             </div>
           </div>
-          <div></div>
-          <div>
-            <button style={{background:'#94268f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>등록</button>
-            <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>취소</button>
+          <div style={{textAlign:"center",paddingTop:16,paddingBottom:16}}>{real?
+            <p>이 카드는 정품입니다.</p>:
+            <>
+              <p>이 카드는 가품입니다.</p>
+              <p>관리코드 및 카드에 기재된 ID를 확인해주세요</p>
+            </>}
           </div>
-          <div>
+          {real?<div>
+            <button style={{background:'#94268f',width:'100%', height:48,borderRadius:4,color:'white'}}>등록</button>
+            <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>취소</button>
+          </div>:<div>
             <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>확인</button>
             <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>문의하기</button>
             <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>소유이전 신청</button>
-          </div>
+          </div>}
+
+
         </div>
       </Container>
     </Layout>
