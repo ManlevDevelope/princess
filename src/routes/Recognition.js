@@ -9,8 +9,6 @@ import { ScanContainer } from '../components/styled';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { useCallback } from 'react';
-import Layout from '../layouts';
 
 // let classifier;
 // let stream;
@@ -91,24 +89,32 @@ function Recognition() {
       videoRef.current.clientWidth * scale,
       videoRef.current.clientHeight * scale
     );
-    console.log(context);
     setCapture(true);
+    // const blob = dataURItoBlob(canvasRef.current.toDataURL('image/jpeg'));
+    // const formData = new FormData();
+    // formData.append('file', blob);
+    history.push({
+      pathname: '/regist',
+      captured: canvasRef.current.toDataURL('image/jpeg'),
+    });
   };
   return (
     <ScanContainer>
-      <Loader
-        type='Watch'
-        color='#00BFFF'
-        height={200}
-        width={200}
-        visible={!loaded}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: '30px',
-          alignItems: 'center',
-        }}
-      />
+      <div>
+        <Loader
+          type='Oval'
+          color='#777'
+          height={100}
+          width={100}
+          visible={!loaded}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '30px',
+            alignItems: 'center',
+          }}
+        />
+      </div>
       <div className='scan-bg'>
         <div className='scan-header'>
           <Link className='btn-back' to='/'>
@@ -135,7 +141,7 @@ function Recognition() {
 
           {loaded && (
             <StartButton onClick={() => onClickCapture()}>
-              {start ? 'Stop' : <img src='/img/icon-scan-white.svg' alt='' />}
+              {start ? <img src='/img/icon-scan-white.svg' alt='' /> : '준비중'}
             </StartButton>
           )}
         </div>
