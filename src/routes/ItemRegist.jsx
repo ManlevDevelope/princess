@@ -1,17 +1,31 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useRef } from "react"
+import { useCallback,useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {  useLocation } from "react-router";
+import { UPLOAD_IMAGE_REQUEST } from "../Actions";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { Container } from "../components/styled";
-import Layout from "../layouts"
+import {  useHistory } from 'react-router-dom';
 
+import Layout from "../layouts"
 const ItemRegist = () => {
+  const dispatch=useDispatch();
+  const history=useHistory();
   const {captured,name,real}=useLocation();
   const {width,height} = useWindowSize();
   // const canvasRef=useRef();
   useEffect(()=>{
   },[captured])
+  const onRegistItem=useCallback(()=>{
+    const imageFormData=new FormData();
+    imageFormData.append('image',{name, href:captured});
+    dispatch({type:UPLOAD_IMAGE_REQUEST, data: imageFormData});
+  },[captured]);
+  const onClickBack=useCallback(
+    () => {
+      history.replace('/recognition');
+    },
+    [],
+  );
   return (
     <Layout>
       <Container style={{marginBottom:56}}>
@@ -48,15 +62,13 @@ const ItemRegist = () => {
             </>}
           </div>
           {real?<div>
-            <button style={{background:'#94268f',width:'100%', height:48,borderRadius:4,color:'white'}}>등록</button>
-            <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>취소</button>
+            <button onClick={onRegistItem} style={{background:'#94268f',width:'100%', height:48,borderRadius:4,color:'white'}}>등록</button>
+            <button onClick={onClickBack} style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>취소</button>
           </div>:<div>
-            <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>확인</button>
+            <button onClick={onClickBack} style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>확인</button>
             <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>문의하기</button>
             <button style={{background:'#1d1d1f',width:'100%', height:48,borderRadius:4,color:'white',marginTop:8}}>소유이전 신청</button>
           </div>}
-
-
         </div>
       </Container>
     </Layout>
