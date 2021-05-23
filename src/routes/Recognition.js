@@ -96,12 +96,18 @@ function Recognition() {
     // formData.append('file', blob);
     const recogResult = result[0].label;
     let itemName = '';
+    let series = '';
     let real;
     if (recogResult.indexOf('(가품)') !== -1) {
-      itemName = recogResult.split('(가품)')[0];
+      const nameArray = recogResult.split('(가품):');
+      itemName = nameArray[0];
+      series = nameArray[1];
+      console.log(series);
       real = false;
     } else {
-      itemName = recogResult;
+      const nameArray = recogResult.split(':');
+      itemName = nameArray[0];
+      series = nameArray[1];
       real = true;
     }
     console.log(itemName);
@@ -109,6 +115,7 @@ function Recognition() {
       pathname: '/regist',
       captured: canvasRef.current.toDataURL('image/jpeg'),
       name: itemName,
+      series,
       real,
     });
     // }

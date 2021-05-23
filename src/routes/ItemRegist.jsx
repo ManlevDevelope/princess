@@ -1,7 +1,7 @@
-import { useCallback,useEffect } from "react";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {  useLocation } from "react-router";
-import { UPLOAD_IMAGE_REQUEST } from "../Actions";
+import {  UPLOAD_ITEM_REQUEST } from "../Actions";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { Container } from "../components/styled";
 import {  useHistory } from 'react-router-dom';
@@ -10,16 +10,24 @@ import Layout from "../layouts"
 const ItemRegist = () => {
   const dispatch=useDispatch();
   const history=useHistory();
-  const {captured,name,real}=useLocation();
+  const {captured,name,real,series}=useLocation();
   const {width,height} = useWindowSize();
   // const canvasRef=useRef();
-  useEffect(()=>{
-  },[captured])
+
   const onRegistItem=useCallback(()=>{
-    const imageFormData=new FormData();
-    imageFormData.append('image',{name, href:captured});
-    dispatch({type:UPLOAD_IMAGE_REQUEST, data: imageFormData});
-  },[captured]);
+    const blobBin=atob(captured.split(',')[1]);
+    const array=[];
+    for(let i=0;i<blobBin.length;i++){
+      array.push(blobBin.charCodeAt(i))
+    }
+    const file=new Blob([new Uint8Array(array)],{type:'image/png'});
+    file.name=name;
+    const image=new FormData();
+    image.append('image',file,name);
+    image.append('name',name);
+    image.append('series',series);
+    dispatch({type:UPLOAD_ITEM_REQUEST, data: image});
+  },[captured,name,real]);
   const onClickBack=useCallback(
     () => {
       history.replace('/recognition');
@@ -44,7 +52,7 @@ const ItemRegist = () => {
                 <div style={{color:'#787878',fontSize:'14px'}}>시리즈A</div>
               </div>
               <div style={{color:'#787878',marginLeft:20,marginRight:20,fontSize:"12px",whiteSpace:'nowrap'}}>
-                <p>관리코드: 12314151</p>
+                <p>관리코드: -</p>
                 <p>상품ID: ASDF1234</p>
               </div>
             </div>

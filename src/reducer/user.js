@@ -20,6 +20,7 @@ import produce from '../utils';
 
 const initialState = {
   me: null,
+  loading: true,
   nickCheck: false,
   loadMyInfoLoading: false,
   loadMyInfoDone: false,
@@ -64,11 +65,15 @@ const reducer = (state = initialState, action) =>
       case LOAD_MY_INFO_SUCCESS:
         draft.loadMyInfoLoading = false;
         draft.loadMyInfoDone = true;
+        draft.loading = false;
         draft.me = action.data;
         break;
       case LOAD_MY_INFO_FAILURE:
         draft.loadMyInfoLoading = false;
         draft.loadMyInfoError = action.error;
+        draft.loading = false;
+
+        draft.me = null;
         break;
       case LOG_IN_REQUEST:
         draft.logInLoading = true;

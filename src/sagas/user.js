@@ -30,13 +30,21 @@ function loginAPI(data) {
   // console.log('saga api test');
 }
 
+function takeToken(data) {
+  axios.defaults.headers.common['Authorization'] = data;
+  return localStorage.setItem('user', data);
+}
+
 function* login(action) {
   try {
     const result = yield call(loginAPI, action.data);
     console.log(result);
+    yield call(takeToken, result.data.accessToken);
+
+    const { nickname } = result.data;
     yield put({
       type: LOG_IN_SUCCESS,
-      data: result.data,
+      data: { nickname },
     });
   } catch (err) {
     console.error(err);
@@ -126,7 +134,7 @@ function* watchCheckNickname() {
 
 // load user
 function loadMyInfoAPI() {
-  return axios.get('/user');
+  return axios.post('/user/auth');
 }
 
 function* loadMyInfo() {
