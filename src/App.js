@@ -29,81 +29,81 @@ function App() {
     }
     dispatch({ type: LOAD_MY_INFO_REQUEST });
   }, []);
-  // if (!loading)
-  return (
-    <Switch>
-      <Route exact path='/' render={(props) => <Home {...props} />} />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/recognition'
-        render={(props) => <Recognition {...props} />}
-      />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/regist'
-        render={(props) => <ItemRegist {...props} />}
-      />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/shop'
-        component={ShopPage}
-        render={(props) => <ShopPage {...props} />}
-      />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/shop/:id'
-        render={(props) => <ShopDetail {...props} />}
-      />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/newsfeed'
-        render={(props) => <Newsfeed {...props} />}
-      />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/newsfeed/:id'
-        render={(props) => <NewsfeedDetail {...props} />}
-      />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/mycard'
-        render={(props) => <Mycard {...props} />}
-      />
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/card-newsfeed'
-        render={(props) => <Newsfeed {...props} />}
-      />
+  if (!loading)
+    return (
+      <Switch>
+        <Route exact path='/' render={(props) => <Home {...props} />} />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/recognition'
+          render={(props) => <Recognition {...props} />}
+        />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/regist'
+          render={(props) => <ItemRegist {...props} />}
+        />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/shop'
+          component={ShopPage}
+          render={(props) => <ShopPage {...props} />}
+        />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/shop/:id'
+          render={(props) => <ShopDetail {...props} />}
+        />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/newsfeed'
+          render={(props) => <Newsfeed {...props} />}
+        />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/newsfeed/:id'
+          render={(props) => <NewsfeedDetail {...props} />}
+        />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/mycard'
+          render={(props) => <Mycard {...props} />}
+        />
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/card-newsfeed'
+          render={(props) => <Newsfeed {...props} />}
+        />
 
-      <Route
-        exact
-        path='/login'
-        render={(props) => (me ? <Redirect to='/' /> : <Login {...props} />)}
-      />
-      <Route
-        exact
-        path='/signup'
-        render={(props) => (me ? <Redirect to='/' /> : <Signup {...props} />)}
-      />
+        <Route
+          exact
+          path='/login'
+          render={(props) => (me ? <Redirect to='/' /> : <Login {...props} />)}
+        />
+        <Route
+          exact
+          path='/signup'
+          render={(props) => (me ? <Redirect to='/' /> : <Signup {...props} />)}
+        />
 
-      <AuthWithRoute
-        auth={me}
-        exact
-        path='/info'
-        render={(props) => <UserInfo {...props} />}
-      />
-      {/* <Redirect to='/not-found' /> */}
-    </Switch>
-  );
-  // else return <></>;
+        <AuthWithRoute
+          auth={me}
+          exact
+          path='/info'
+          render={(props) => <UserInfo {...props} />}
+        />
+        {/* <Redirect to='/not-found' /> */}
+      </Switch>
+    );
+  else return <></>;
 }
 
 export default App;

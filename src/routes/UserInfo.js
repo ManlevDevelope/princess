@@ -9,9 +9,11 @@ const UserInfo = () => {
     <Layout>
       <UserProfileComponent />
       <div className='card-grp'>
-        {item.map((itm) => (
-          <CardComponent key={itm.id} imageSource={itm.Image.src} />
-        ))}
+        {Array.isArray(item)
+          ? item.map((itm) => (
+              <CardComponent key={itm.id} imageSource={itm.Image.src} />
+            ))
+          : null}
       </div>
     </Layout>
   );
