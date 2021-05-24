@@ -12,7 +12,7 @@ const CardComponent = ({ imageSource }) => {
       >
         <img
           style={{ height: '100%', objectFit: 'cover', position: 'absolute' }}
-          src={`/img/${imageSource}`}
+          src={`http://localhost:3080/${imageSource}`}
           alt=''
         />
       </Link>

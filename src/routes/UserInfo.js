@@ -1,21 +1,17 @@
+import { useSelector } from 'react-redux';
 import CardComponent from '../components/CardComponent';
 import UserProfileComponent from '../components/UserProfileComponent';
 import Layout from '../layouts';
 
 const UserInfo = () => {
+  const { Cards: item } = useSelector((state) => state.user.me);
   return (
     <Layout>
       <UserProfileComponent />
       <div className='card-grp'>
-        <CardComponent imageSource={'pd1.jpg'} />
-        <CardComponent imageSource={'pd2.jpg'} />
-        <CardComponent imageSource={'pd3.jpg'} />
-        <CardComponent imageSource={'sb1.jpg'} />
-        <CardComponent imageSource={'sb2.jpg'} />
-        <CardComponent imageSource={'sb3.jpg'} />
-        <CardComponent imageSource={'sb4.jpg'} />
-        <CardComponent imageSource={'sb5.jpg'} />
-        <CardComponent imageSource={'sb6.jpg'} />
+        {item.map((itm) => (
+          <CardComponent key={itm.id} imageSource={itm.Image.src} />
+        ))}
       </div>
     </Layout>
   );
