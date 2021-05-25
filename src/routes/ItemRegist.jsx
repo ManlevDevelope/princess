@@ -18,7 +18,7 @@ const ItemRegist = () => {
   // const canvasRef=useRef();
   useEffect(()=>{
     if(uploadItemDone){
-      history.push('/');
+      history.push('/info');
     }
   },[uploadItemDone])
   const onRegistItem=useCallback(()=>{

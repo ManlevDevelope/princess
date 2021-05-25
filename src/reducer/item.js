@@ -3,6 +3,7 @@ import {
   UPLOAD_ITEM_FAILURE,
   UPLOAD_ITEM_REQUEST,
   UPLOAD_ITEM_SUCCESS,
+  UPLOAD_REFRESH,
 } from '../Actions';
 const initialState = {
   uploadItemLoading: false,
@@ -25,6 +26,9 @@ const reducer = (state = initialState, action) =>
       case UPLOAD_ITEM_FAILURE:
         draft.uploadItemError = action.error;
         draft.uploadItemLoading = false;
+        break;
+      case UPLOAD_REFRESH:
+        draft.uploadItemDone = false;
         break;
       default:
         break;
