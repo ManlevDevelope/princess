@@ -23,6 +23,9 @@ import {
   SIGN_UP_FAILURE,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
+  WHO_FAILURE,
+  WHO_REQUEST,
+  WHO_SUCCESS,
 } from '../Actions';
 
 function loginAPI(data) {
@@ -132,6 +135,30 @@ function* watchCheckNickname() {
   yield takeLatest(NICK_CHECK_REQUEST, checkNickname);
 }
 
+function whoAPI(data) {
+  return axios.post('/user/who', data);
+}
+
+function* who(action) {
+  try {
+    const result = yield call(whoAPI, { nickname: action.data });
+    yield put({
+      type: WHO_SUCCESS,
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: WHO_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function* watchWho() {
+  yield takeLatest(WHO_REQUEST, who);
+}
+
 // load user
 function loadMyInfoAPI() {
   return axios.post('/user/auth');
@@ -163,6 +190,7 @@ function* watchLoadMyInfo() {
 export default function* userSaga() {
   yield all([
     fork(watchLogin),
+    fork(watchWho),
     fork(watchLogOut),
     fork(watchSignUp),
     fork(watchCheckNickname),

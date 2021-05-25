@@ -42,10 +42,10 @@ const UserProfileComponent = () => {
         <div className='info-grp'>
           <div className='profile-item'>
             <dt>
-              <Link to='/'>{post.length}개</Link>
+              <Link to='/newsfeed'>{post.length}개</Link>
             </dt>
             <dd>
-              <Link to='/'>게시글</Link>
+              <Link to='/newsfeed'>게시글</Link>
             </dd>
           </div>
           <div className='profile-item'>

@@ -15,6 +15,9 @@ import {
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
   LOAD_MY_INFO_FAILURE,
+  WHO_FAILURE,
+  WHO_REQUEST,
+  WHO_SUCCESS,
 } from '../Actions';
 import produce from '../utils';
 
@@ -22,19 +25,22 @@ const initialState = {
   me: null,
   loading: true,
   nickCheck: false,
+  who: false,
   loadMyInfoLoading: false,
   loadMyInfoDone: false,
   loadMyInfoError: null,
-
   logInLoading: false,
   logInDone: false,
   logInError: null,
   logOutLoading: false,
   logOutDone: false,
   logOutError: null,
-  checkNickLoading: false,
-  checkNickDone: false,
-  checkNickError: null,
+  nickCheckLoading: false,
+  nickCheckDone: false,
+  nickCheckError: null,
+  whoLoading: false,
+  whoDone: false,
+  whoError: null,
   signUpLoading: false,
   signUpDone: false,
   signUpError: null,
@@ -103,6 +109,20 @@ const reducer = (state = initialState, action) =>
         draft.logOutLoading = false;
         draft.logOutError = action.error;
         break;
+      case WHO_REQUEST:
+        draft.whoLoading = true;
+        draft.whoDone = false;
+        draft.whoError = null;
+        break;
+      case WHO_SUCCESS:
+        draft.whoLoading = false;
+        draft.whoDone = true;
+        draft.who = action.data;
+        break;
+      case WHO_FAILURE:
+        draft.whoError = action.error;
+        draft.whoLoading = false;
+        break;
       case NICK_CHECK_REQUEST:
         draft.nickCheckLoading = true;
         draft.nickCheckDone = false;
@@ -115,6 +135,7 @@ const reducer = (state = initialState, action) =>
         break;
       case NICK_CHANGED:
         draft.nickCheck = false;
+        draft.who = false;
         break;
       case NICK_CHECK_FAILURE:
         draft.nickCheckError = action.error;

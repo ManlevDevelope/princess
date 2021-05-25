@@ -22,7 +22,7 @@ const CardProfileComponent = () => {
         <div className='info-grp'>
           <div className='count'>
             <dt>
-              <Link to='004_myCard_newsfeed.html'>123개</Link>
+              <Link to='/newsfeed'>123개</Link>
             </dt>
             <dd>
               <Link to='004_myCard_newsfeed.html'>보유카드수</Link>

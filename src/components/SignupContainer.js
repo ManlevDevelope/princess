@@ -78,6 +78,7 @@ const SignupContainer = () => {
       }
       if (!nickCheck) {
         alert('닉네임체크를 다시해주세요');
+        return;
       }
       dispatch(
         signUpRequestAction({
