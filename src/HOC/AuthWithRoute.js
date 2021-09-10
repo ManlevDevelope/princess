@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -13,7 +14,7 @@ const AuthWithRoute = ({ auth, component: Component, render, ...rest }) => {
       dispatch({ type: LOAD_MY_INFO_REQUEST });
     }
     console.log('loading');
-  }, [loading]);
+  }, [dispatch, loading]);
   return (
     <Route
       {...rest}

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+// eslint-disable-next-line
 import { Link, useHistory } from 'react-router-dom';
 
 const ShopDetailHeader = () => {

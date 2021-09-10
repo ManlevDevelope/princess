@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Recognition from './routes/Recognition';
@@ -28,7 +29,7 @@ function App() {
       console.dir(data);
     }
     dispatch({ type: LOAD_MY_INFO_REQUEST });
-  }, []);
+  });
   if (!loading)
     return (
       <Switch>

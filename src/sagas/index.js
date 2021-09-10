@@ -4,7 +4,9 @@ import userSaga from './user';
 import itemSaga from './item';
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'production'
-    ? 'https://pockethive.ga/api'
+    // ? 'https://pockethive.ga/api'
+    // : 'http://localhost:3080';
+    ? 'https://pockethive.net/api'
     : 'http://localhost:3080';
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
